@@ -1,0 +1,38 @@
+{
+    "configurations": [
+        {
+            "name": "!!! WARNING !!! AUTO-GENERATED FILE, PLEASE DO NOT MODIFY IT AND USE https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags"
+        },
+        {
+            "name": "Win32",
+            "includePath": [
+                "C:/Users/casanovg/source/Repos/GitHub/sw-tests/tst-09/include",
+                "C:/Users/casanovg/source/Repos/GitHub/sw-tests/tst-09/src",
+                "C:/Users/casanovg/source/Repos/GitHub/sw-tests/tst-09/lib/library",
+                "C:/Users/casanovg/.platformio/packages/tool-unity",
+                ""
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "C:/Users/casanovg/source/Repos/GitHub/sw-tests/tst-09/include",
+                    "C:/Users/casanovg/source/Repos/GitHub/sw-tests/tst-09/src",
+                    "C:/Users/casanovg/source/Repos/GitHub/sw-tests/tst-09/lib/library",
+                    "C:/Users/casanovg/.platformio/packages/tool-unity",
+                    ""
+                ]
+            },
+            "defines": [
+                "PLATFORMIO=40304",
+                "PROJECT_NAME=tst-09",
+                ""
+            ],
+            "intelliSenseMode": "clang-x64",
+            "compilerPath": "C:/MinGW/bin/gcc.exe",
+            "compilerArgs": [
+                ""
+            ]
+        }
+    ],
+    "version": 4
+}
