@@ -1,23 +1,21 @@
-// ---------------------------------------------
+// .............................................
 // Test 01 - 2019-10-03 - Gustavo Casanova
 // .............................................
+// File: tst-01.c
+// .............................................
 // Heat modulation algorithm
-// ---------------------------------------------
+// .............................................
 
 #include "tst-01.h"
 
-// Prototypes
-int main(void);
-void Delay(unsigned int milli_seconds);
-
 // Main function
 int main(void) {
-    uint8_t current_heat_level = 0; /* This level is determined by the CH temperature potentiometer */
+    uint8_t current_heat_level = 0;  // This level is determined by the CH temperature potentiometer
 
     uint8_t current_valve = 0;
     unsigned long valve_open_timer = 0;
 
-    #define BUFF_LEN 34
+#define BUFF_LEN 34
 
     uint16_t shake[BUFF_LEN];
     uint8_t length = BUFF_LEN;
@@ -51,7 +49,6 @@ int main(void) {
      *************
      */
     for (;;) {
-
         // if (length--) {
         //     // printf("\n\n\rSHAKE PRONTO SHAKE %d: %d\n\n\r", length, shake[length]);
         // } else {
@@ -88,7 +85,7 @@ int main(void) {
                     valve_open_timer = (heat_level[current_heat_level].valve_open_time[current_valve] * cycle_time / 100);
                     if (gas_valve[current_valve].status == 0) {
                         printf(" (O) Opening valve %d for %d ms!\n\r", current_valve + 1, valve_open_timer);
-                        gas_valve[current_valve].status = 1; /* [ ] OPEN VALVE [ ] */
+                        gas_valve[current_valve].status = 1;  // [ ] OPEN VALVE [ ]
                     } else {
                         printf(" (=) Valve %d already open, keeping it as is for %d ms!\n\r", current_valve + 1, valve_open_timer);
                     }
@@ -97,15 +94,15 @@ int main(void) {
                         if (valve_to_close != current_valve) {
                             if (gas_valve[valve_to_close].status != 0) {
                                 printf(" (X) Closing valve %d ...\n\r", valve_to_close + 1);
-                                gas_valve[valve_to_close].status = 0; /* [x] CLOSE VALVE [x] */
+                                gas_valve[valve_to_close].status = 0;  // [x] CLOSE VALVE [x]
                             }
                         }
                     }
                 }
-                
+
             } else {
                 printf(" ||| Valve %d not set to be open in heat level %d (%d Kcal/h) ...\n\r", current_valve + 1, current_heat_level + 1, heat_level[current_heat_level].kcal_h);
-                valve_open_timer++; /* This is necessary to move to the next valve */
+                valve_open_timer++;  // This is necessary to move to the next valve
             }
             // Open-valve delay
             if (!(--valve_open_timer)) {
@@ -134,7 +131,7 @@ int main(void) {
     printf("\n\rLoop ended!\n\n\r");
 }
 
-// Function Delay
+// Function Delay (blocking)
 void Delay(unsigned int milli_seconds) {
     clock_t goal = milli_seconds + clock();
     while (goal > clock())
