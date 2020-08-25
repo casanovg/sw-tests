@@ -6,22 +6,22 @@
         {
             "name": "Win32",
             "includePath": [
-                "c:/Users/casanovg/source/Repos/GitHub/open-boiler/software/sw-tests/tst-01/include",
-                "c:/Users/casanovg/source/Repos/GitHub/open-boiler/software/sw-tests/tst-01/src",
+                "c:/Users/casanovg/source/Repos/GitHub/sw-tests/tst-01/include",
+                "c:/Users/casanovg/source/Repos/GitHub/sw-tests/tst-01/src",
                 "C:/Users/casanovg/.platformio/packages/tool-unity",
                 ""
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                    "c:/Users/casanovg/source/Repos/GitHub/open-boiler/software/sw-tests/tst-01/include",
-                    "c:/Users/casanovg/source/Repos/GitHub/open-boiler/software/sw-tests/tst-01/src",
+                    "c:/Users/casanovg/source/Repos/GitHub/sw-tests/tst-01/include",
+                    "c:/Users/casanovg/source/Repos/GitHub/sw-tests/tst-01/src",
                     "C:/Users/casanovg/.platformio/packages/tool-unity",
                     ""
                 ]
             },
             "defines": [
-                "PLATFORMIO=40303",
+                "PLATFORMIO=40304",
                 "PROJECT_NAME=tst-01",
                 ""
             ],
