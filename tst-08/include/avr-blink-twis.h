@@ -13,7 +13,7 @@
 #define _AVR_BLINK_TWIS_H_
 
 #ifdef ARDUINO_AVR_PRO
-#define TWI_ADDR 12
+#define TWI_ADDR 26
 #endif // ARDUINO_AVR_PRO
 
 #ifdef ARDUINO_AVR_ATTINYX5

@@ -78,9 +78,9 @@ void TwiTransmitByte(uint8_t data_byte) {
    |___________________________|
 */
 uint8_t TwiReceiveByte(void) {
-    while (rx_byte_count-- == 0) {};        /* Wait until a byte is received into the RX buffer */
+    while (rx_byte_count-- == 0) {};                /* Wait until a byte is received into the RX buffer */
     rx_tail = ((rx_tail + 1) & TWI_RX_BUFFER_MASK); /* Update the RX buffer index */
-    return rx_buffer[rx_tail];              /* Return data from the buffer */
+    return rx_buffer[rx_tail];                      /* Return data from the buffer */
 }
 
 /*  _______________________________________________________
@@ -133,7 +133,7 @@ inline bool UsiOverflowHandler(void) {
                     // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                     // Next state -> STATE_SEND_DATA_BYTE
                     twi_driver_state = STATE_SEND_DATA_BYTE;
-                } else {                /* If data register low-order bit = 0, start the receive data mode */
+                } else { /* If data register low-order bit = 0, start the receive data mode */
                     // Next state -> STATE_RECEIVE_DATA_BYTE
                     twi_driver_state = STATE_RECEIVE_DATA_BYTE;
                 }
@@ -149,7 +149,7 @@ inline bool UsiOverflowHandler(void) {
         // NACK. If ACK (low), just continue to STATE_SEND_DATA_BYTE without break. If NACK (high)
         // the transmission is complete. Wait for a new start condition and TWI address.        
         case STATE_CHECK_RECEIVED_ACK: {
-            if (USIDR) {                /* NACK - handshake complete ... */
+            if (USIDR) { /* NACK - handshake complete ... */
                 SET_USI_TO_WAIT_FOR_TWI_ADDRESS();
                 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                 //                                                                   >>
