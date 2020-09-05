@@ -18,22 +18,26 @@ int main(void) {
     Delay(OPERATION_DELAY);
 
     for (;;) {
+        uint8_t character = '\0';
         if (RandomByte(0, 1)) {
             // On true, write buffer
+            printf(" [ WRITING ] ");
             if (buffer_byte_count < BUFFER_SIZE) {
-                printf(" [ WRITE ]\n\r");
+                character = RandomByte(65, 122);
                 // WriteBuffer(RandomByte(1, 255));
-                WriteBuffer(RandomByte(65, 122));
+                printf(">>> %c\n\r", character);
+                WriteBuffer(character);
             } else {
-                printf(" *** FULL *** \n\r");
+                printf("*** FULL ***\n\r");
             }
         } else {
             // On false, read buffer
+            printf(" [ READING ] ");
             if (buffer_byte_count > 0) {
-                printf(" [ READ ]\n\r");
-                ReadBuffer();
+                character = ReadBuffer();
+                printf("<<< %c\n\r", character);
             } else {
-                printf(" ___ EMPTY ___ \n\r");
+                printf("___ EMPTY ___\n\r");
             }
         }
         Delay(OPERATION_DELAY);
@@ -63,11 +67,10 @@ void WriteBuffer(uint8_t data) {
 uint8_t ReadBuffer(void) {
     //while (!rx_byte_count) {};                     // Wait until the buffer has data
     buffer_tail = ((buffer_tail + 1) & BUFFER_MASK);  // Update the buffer index
-
-    buffer[buffer_tail] = 32;  // Just for testing ...
-
+    uint8_t data = buffer[buffer_tail];
+    buffer[buffer_tail] = 32;    // Just for testing ...
     buffer_byte_count--;
-    return buffer[buffer_tail];  // Return data from the buffer
+    return data;  // Return data from the buffer
 }
 
 // void PrintBuffer
