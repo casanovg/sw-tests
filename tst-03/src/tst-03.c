@@ -11,8 +11,8 @@ int main(void) {
     InitBuffer();
 
     ClrScr();
-    printf("Circular buffer test\n\r");
-    printf("====================\n\n\r");
+    //printf("Circular buffer test\n\r");
+    //printf("====================\n\n\r");
 
     PrintBuffer();
     Delay(OPERATION_DELAY);
@@ -75,6 +75,7 @@ uint8_t ReadBuffer(void) {
 
 // void PrintBuffer
 void PrintBuffer(void) {
+    printf("\n\r");
     // Print buffer positions
     for (uint8_t i = 0; i < BUFFER_SIZE; i++) {
         printf("| B%02d ", i);
