@@ -12,9 +12,9 @@
 #include <time.h>
 
 // Defines
-#define USE_BITWISE_MASK true  // This defines the buffer pointers return-to-start method
+#define USE_BITWISE_MASK false  // This defines the buffer pointers return-to-start method
 // If USE_BITWISE_MASK is true, BUFFER_SIZE has to a power of 2 (2, 4, 8, 16, 32, 64, ... )
-#define BUFFER_SIZE 16
+#define BUFFER_SIZE 20
 #define BUFFER_MASK (BUFFER_SIZE - 1)  // This is used only when USE_BITWISE_MASK is true
 
 #define OPERATION_DELAY 250
