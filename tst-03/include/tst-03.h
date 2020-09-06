@@ -9,13 +9,14 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <time.h>
+#include <stdlib.h>
 
 // defines
-#define BUFFER_SIZE 8
+#define BUFFER_SIZE 16
 #define BUFFER_MASK (BUFFER_SIZE - 1)
 
 #define MAX_COUNT 255
-#define OPERATION_DELAY 900000
+#define OPERATION_DELAY 250
 
 // Globals
 uint8_t buffer[BUFFER_SIZE];
