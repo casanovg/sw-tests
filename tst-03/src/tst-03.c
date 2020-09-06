@@ -107,7 +107,7 @@ uint8_t ReadBuffer(void) {
     buffer_tail = ((buffer_tail + 1) & BUFFER_MASK);
 #else
     buffer_tail = ((buffer_tail + 1) % BUFFER_SIZE);
-#endif  //USE_BITWISE_MASK
+#endif  // USE_BITWISE_MASK
     uint8_t data = buffer[buffer_tail];
     buffer[buffer_tail] = 32;  //After reading replace read with an space (optional, for testing only)
     buffer_byte_count--;
