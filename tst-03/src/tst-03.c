@@ -101,7 +101,7 @@ void WriteBuffer(uint8_t data) {
 
 // Function ReadBuffer
 uint8_t ReadBuffer(void) {
-    //while (!rx_byte_count) {};                     // Wait until the buffer has data
+    // while (!rx_byte_count) {};                     // Wait until the buffer has data
 #if USE_BITWISE_MASK
     // Update the buffer rear index
     buffer_tail = ((buffer_tail + 1) & BUFFER_MASK);
