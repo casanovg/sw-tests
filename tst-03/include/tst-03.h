@@ -8,19 +8,20 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
-#include <time.h>
 #include <stdlib.h>
+#include <time.h>
 
-// defines
+// Defines
+#define USE_BITWISE_MASK true  // This defines the buffer pointers return-to-start method
+// If USE_BITWISE_MASK is true, BUFFER_SIZE has to a power of 2 (2, 4, 8, 16, 32, 64, ... )
 #define BUFFER_SIZE 16
-#define BUFFER_MASK (BUFFER_SIZE - 1)
+#define BUFFER_MASK (BUFFER_SIZE - 1)  // This is used only when USE_BITWISE_MASK is true
 
-#define MAX_COUNT 255
 #define OPERATION_DELAY 250
 
 // Globals
 uint8_t buffer[BUFFER_SIZE];
-uint8_t buffer_byte_count = 0; /* Bytes received in buffer */
+uint8_t buffer_byte_count = 0;  // Bytes received in buffer
 uint8_t buffer_head = 0, buffer_tail = 0;
 
 // Prototypes
