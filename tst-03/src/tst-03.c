@@ -11,6 +11,9 @@ int main(void) {
     InitBuffer();
     ClrScr();
 
+    PrintBuffer();
+    Delay(OPERATION_DELAY * 20);
+
     // Force some writing / reads to move the tail pointer ahead, this
     // is to test that the buffer full detection works even when this
     // pointer is not at start
@@ -29,46 +32,34 @@ int main(void) {
 
     // Preload the buffer to test for buffer full condition detection
     // before starting the alternating read / write cycle
-    // const uint8_t preload_max = 30;
-    // for (uint8_t i = 0; i < preload_max; i++) {
-    //     printf(" = PRELOADING = ");
-    //     if (buffer_byte_count < BUFFER_SIZE) {
-    //         uint8_t character = RandomByte(65, 122);
-    //         // WriteBuffer(RandomByte(1, 255));
-    //         printf(">>> %c\n\r", character);
-    //         WriteBuffer(character);
-    //     } else {
-    //         printf("*** FULL ***\n\r");
-    //     }
-    //     Delay(OPERATION_DELAY);
-    //     ClrScr();
-    //     PrintBuffer();
-    // }
-    // Delay(OPERATION_DELAY * 8);
+    const uint8_t preload_max = 30;
+    for (uint8_t i = 0; i < preload_max; i++) {
+        uint8_t character = RandomByte(65, 122);
+        printf(" = PRELOADING = >>> %c ", character);
+        WriteBuffer(character);
+        Delay(OPERATION_DELAY);
+        ClrScr();
+        PrintBuffer();
+    }
+    Delay(OPERATION_DELAY * 20);
+
+    // PrintBuffer();
+    // Delay(OPERATION_DELAY * 20);
+    // ClrScr();
 
     // Main random write / read loop
     for (;;) {
         uint8_t character = '\0';
         if (RandomByte(0, 1)) {
             // On true, write buffer
-            printf(" * WRITING * ");
-            if (buffer_byte_count < BUFFER_SIZE) {
-                character = RandomByte(65, 122);
-                // WriteBuffer(RandomByte(1, 255));
-                printf(">>> %c\n\r", character);
-                WriteBuffer(character);
-            } else {
-                printf("*** FULL ***\n\r");
-            }
+            character = RandomByte(65, 122);
+            printf(" * WRITING * >>> %c ", character);
+            WriteBuffer(character);
         } else {
             // On false, read buffer
             printf(" _ READING _ ");
-            if (buffer_byte_count > 0) {
-                character = ReadBuffer();
-                printf("<<< %c\n\r", character);
-            } else {
-                printf("___ EMPTY ___\n\r");
-            }
+            character = ReadBuffer();
+            printf("<<< %c ", character);
         }
         Delay(OPERATION_DELAY);
         ClrScr();
@@ -89,29 +80,40 @@ void InitBuffer(void) {
 
 // Function WriteBuffer
 void WriteBuffer(uint8_t data) {
+    //while (buffer_byte_count == BUFFER_SIZE) {};
+    if (buffer_byte_count == BUFFER_SIZE) {
+        // Wait until there is a slot to write the buffer
+        printf("*** FULL *** ");
+    } else {
 #if USE_BITWISE_MASK
-    // Update the buffer front index
-    buffer_head = ((buffer_head + 1) & BUFFER_MASK);
+        // Update the buffer front index
+        buffer_head = ((buffer_head + 1) & BUFFER_MASK);
 #else
-    buffer_head = ((buffer_head + 1) % BUFFER_SIZE);
+        buffer_head = ((buffer_head + 1) % BUFFER_SIZE);
 #endif  // USE_BITWISE_MASK
-    buffer[buffer_head] = data;
-    buffer_byte_count++;
+        buffer[buffer_head] = data;
+        buffer_byte_count++;
+    }
 }
 
 // Function ReadBuffer
 uint8_t ReadBuffer(void) {
-    // while (!rx_byte_count) {};                     // Wait until the buffer has data
+    // while (!buffer_byte_count) {};
+    if (!buffer_byte_count) {
+        // Wait until the buffer has data to read
+        printf("___ EMPTY ___ ");
+    } else {
 #if USE_BITWISE_MASK
-    // Update the buffer rear index
-    buffer_tail = ((buffer_tail + 1) & BUFFER_MASK);
+        // Update the buffer rear index
+        buffer_tail = ((buffer_tail + 1) & BUFFER_MASK);
 #else
-    buffer_tail = ((buffer_tail + 1) % BUFFER_SIZE);
+        buffer_tail = ((buffer_tail + 1) % BUFFER_SIZE);
 #endif  // USE_BITWISE_MASK
-    uint8_t data = buffer[buffer_tail];
-    buffer[buffer_tail] = 32;  //After reading replace read with an space (optional, for testing only)
-    buffer_byte_count--;
-    return data;  // Return tail pointer position buffer content
+        uint8_t data = buffer[buffer_tail];
+        buffer[buffer_tail] = 32;  //After reading replace read with an space (optional, for testing only)
+        buffer_byte_count--;
+        return data;  // Return tail pointer position buffer content
+    }
 }
 
 // void PrintBuffer
