@@ -4,7 +4,7 @@
  * Created: 12/05/2021 10:53:04
  *  Author: casanovg
  *
- * NOTE: Please make sure your ATtiny85's fuses are configured as shown below:
+ * NOTE: Please make sure the ATtiny85 fuses are configured as shown below:
  *       Low:      0x62
  *       High:     0xD5
  *       Extended: 0xFE
