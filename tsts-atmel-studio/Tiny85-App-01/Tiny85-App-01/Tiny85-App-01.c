@@ -25,10 +25,13 @@
 #define DELAY 500				/* Delay in milliseconds*/
 
 int main(void) {
+
     LED_DDR |= (1 << LED_PIN);			/* Set led control pin Data Direction Register for output */
     LED_PORT &= ~(1 << LED_PIN);		/* Turn led off */
+
     for(;;) {
 		LED_PORT ^= (1 << LED_PIN);	/* Toggle PB1 */
 		_delay_ms(DELAY);
     }
+
 }
