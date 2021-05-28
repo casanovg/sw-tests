@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{18226A42-8477-4023-8AD2-40C49DA407C9}") = "Mega8515-App-02", "Mega8515-App-02\Mega8515-App-02.asmproj", "{99414CF7-9613-4C5A-8D37-22AC8F91A618}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99414CF7-9613-4C5A-8D37-22AC8F91A618}.Debug|AVR.ActiveCfg = Debug|AVR
+		{99414CF7-9613-4C5A-8D37-22AC8F91A618}.Debug|AVR.Build.0 = Debug|AVR
+		{99414CF7-9613-4C5A-8D37-22AC8F91A618}.Release|AVR.ActiveCfg = Release|AVR
+		{99414CF7-9613-4C5A-8D37-22AC8F91A618}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
