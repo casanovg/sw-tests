@@ -7,7 +7,7 @@
 *.userosscache
 *.sln.docstates
 *.cproj
-*.atsuo
+#*.atsuo
 
 # Build results
 [Dd]ebug/
