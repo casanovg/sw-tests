@@ -26,10 +26,10 @@
 #define LED_PORT PORTB
 
 #define DELAY 500				/* Delay in milliseconds*/
-#define TIMES_SLOW 5            /* Times to blink slowly*/
-#define TIMES_FAST 50           /* Times to blink fast */
+#define TIMES_SLOW 5            		/* Times to blink slowly*/
+#define TIMES_FAST 50           		/* Times to blink fast */
 
-#define OSC_FAST 0x4C           /* Oscillator offset */
+#define OSC_FAST 0x4C           		/* Oscillator offset */
 
 // Prototypes
 void SpeedUp(uint8_t offset);
@@ -41,7 +41,7 @@ int main(void) {
     LED_DDR |= (1 << LED_PIN);			/* Set led control pin Data Direction Register for output */
     LED_PORT &= ~(1 << LED_PIN);		/* Turn led off */
 
-    uint8_t initial_osccal = OSCCAL;    /* Preserve user oscillator settings */
+    uint8_t initial_osccal = OSCCAL;    	/* Preserve user oscillator settings */
     
     // Slow
     for (uint8_t i = 0; i < TIMES_SLOW * 2; i++) {
@@ -55,7 +55,7 @@ int main(void) {
 
     // Fast
     for (uint8_t i = 0; i < TIMES_FAST * 2; i++) {
-        LED_PORT ^= (1 << LED_PIN);	/* Toggle PB1 */
+        LED_PORT ^= (1 << LED_PIN);		/* Toggle PB1 */
         _delay_ms(DELAY);
     }
 
@@ -65,7 +65,7 @@ int main(void) {
 
     // Slow
     for (;;) {
-        LED_PORT ^= (1 << LED_PIN);	/* Toggle PB1 */
+        LED_PORT ^= (1 << LED_PIN);		/* Toggle PB1 */
         _delay_ms(DELAY);
     }
     
@@ -73,14 +73,14 @@ int main(void) {
 
 // Speed up the chip
 void SpeedUp(uint8_t offset) {
-    OSCCAL += offset;       // Oscillator speed up calibration
-    CLKPR = (1 << CLKPCE);  // Prescaler enable
-    CLKPR = 0x00;           // Clock division factor 1 (0000)
+    OSCCAL += offset;       			// Oscillator speed up calibration
+    CLKPR = (1 << CLKPCE);  			// Prescaler enable
+    CLKPR = 0x00;           			// Clock division factor 1 (0000)
 }
 
 // Restore prescaler
 void SlowDown(uint8_t initial_osccal) {
-    OSCCAL = initial_osccal;                  // Oscillator slow down calibration
-    CLKPR = (1 << CLKPCE);                    // Prescaler enable
-    CLKPR = ((1 << CLKPS1) | (1 << CLKPS0));  // Clock division factor 8 (0011)
+    OSCCAL = initial_osccal;                  	// Oscillator slow down calibration
+    CLKPR = (1 << CLKPCE);                    	// Prescaler enable
+    CLKPR = ((1 << CLKPS1) | (1 << CLKPS0));  	// Clock division factor 8 (0011)
 }
