@@ -30,8 +30,14 @@ int main(void) {
     LED_PORT &= ~(1 << LED_PIN);		/* Turn led off */
 
     for(;;) {
-		LED_PORT ^= (1 << LED_PIN);	/* Toggle PB1 */
+		LED_PORT |= (1 << LED_PIN);	/* Toggle PB1 */
+        //asm("nop");
+        //asm("nop");
 		_delay_ms(DELAY);
+        LED_PORT &= ~(1 << LED_PIN);	/* Toggle PB1 */
+        //asm("nop");
+        //asm("nop");
+        _delay_ms(DELAY);
     }
 
 }
