@@ -1,0 +1,116 @@
+   1               		.file	"tst-04.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.text
+   8               	.Ltext0:
+   9               		.cfi_sections	.debug_frame
+  10               	.global	PokeMSBFirst
+  12               	PokeMSBFirst:
+  13               	.LVL0:
+  14               	.LFB0:
+  15               		.file 1 "tst-04.c"
+   1:tst-04.c      **** /*
+   2:tst-04.c      ****  * tst-o4.c
+   3:tst-04.c      ****  * Endianness tests
+   4:tst-04.c      ****  *
+   5:tst-04.c      ****  * Created: 15/06/2021
+   6:tst-04.c      ****  * Author : prandeamus
+   7:tst-04.c      ****  *
+   8:tst-04.c      ****  */ 
+   9:tst-04.c      **** 
+  10:tst-04.c      **** #include <stdint.h>
+  11:tst-04.c      **** 
+  12:tst-04.c      **** void PokeMSBFirst(uint8_t *command, uint8_t val) {
+  16               		.loc 1 12 50 view -0
+  17               		.cfi_startproc
+  18               	/* prologue: function */
+  19               	/* frame size = 0 */
+  20               	/* stack size = 0 */
+  21               	.L__stack_usage = 0
+  13:tst-04.c      ****     uint16_t addr = (command[1] << 8) | (command[2]);
+  22               		.loc 1 13 5 view .LVU1
+  14:tst-04.c      ****     *((uint8_t*)addr) = val;
+  23               		.loc 1 14 5 view .LVU2
+  24               		.loc 1 14 7 is_stmt 0 view .LVU3
+  25 0000 B92F      		mov r27,r25
+  26 0002 A82F      		mov r26,r24
+  27 0004 1196      		adiw r26,1
+  28 0006 ED91      		ld r30,X+
+  29 0008 FC91      		ld r31,X
+  30 000a FE27      		eor r31,r30
+  31 000c EF27      		eor r30,r31
+  32 000e FE27      		eor r31,r30
+  33               		.loc 1 14 23 view .LVU4
+  34 0010 6083      		st Z,r22
+  35               	.LVL1:
+  36               	/* epilogue start */
+  15:tst-04.c      **** }
+  37               		.loc 1 15 1 view .LVU5
+  38 0012 0895      		ret
+  39               		.cfi_endproc
+  40               	.LFE0:
+  42               	.global	PokeLSBFirst
+  44               	PokeLSBFirst:
+  45               	.LVL2:
+  46               	.LFB1:
+  16:tst-04.c      **** 
+  17:tst-04.c      **** void PokeLSBFirst(uint8_t *command, uint8_t val) {
+  47               		.loc 1 17 50 is_stmt 1 view -0
+  48               		.cfi_startproc
+  49               	/* prologue: function */
+  50               	/* frame size = 0 */
+  51               	/* stack size = 0 */
+  52               	.L__stack_usage = 0
+  18:tst-04.c      ****     uint16_t addr = (command[2] << 8) | (command[1]);
+  53               		.loc 1 18 5 view .LVU7
+  19:tst-04.c      ****     *((uint8_t*)addr) = val;
+  54               		.loc 1 19 5 view .LVU8
+  55               		.loc 1 19 23 is_stmt 0 view .LVU9
+  56 0014 B92F      		mov r27,r25
+  57 0016 A82F      		mov r26,r24
+  58 0018 1196      		adiw r26,1
+  59 001a ED91      		ld r30,X+
+  60 001c FC91      		ld r31,X
+  61 001e 6083      		st Z,r22
+  62               	.LVL3:
+  63               	/* epilogue start */
+  20:tst-04.c      **** }
+  64               		.loc 1 20 1 view .LVU10
+  65 0020 0895      		ret
+  66               		.cfi_endproc
+  67               	.LFE1:
+  69               	.global	PokeNative
+  71               	PokeNative:
+  72               	.LVL4:
+  73               	.LFB2:
+  21:tst-04.c      **** 
+  22:tst-04.c      **** void PokeNative(uint8_t *command, uint8_t val) {
+  74               		.loc 1 22 48 is_stmt 1 view -0
+  75               		.cfi_startproc
+  76               	/* prologue: function */
+  77               	/* frame size = 0 */
+  78               	/* stack size = 0 */
+  79               	.L__stack_usage = 0
+  23:tst-04.c      ****     uint16_t addr = *(uint16_t*)&command[1];
+  80               		.loc 1 23 5 view .LVU12
+  24:tst-04.c      ****     *((uint8_t*)addr) = val;
+  81               		.loc 1 24 5 view .LVU13
+  82               		.loc 1 24 23 is_stmt 0 view .LVU14
+  83 0022 B92F      		mov r27,r25
+  84 0024 A82F      		mov r26,r24
+  85 0026 1196      		adiw r26,1
+  86 0028 ED91      		ld r30,X+
+  87 002a FC91      		ld r31,X
+  88 002c 6083      		st Z,r22
+  89               	.LVL5:
+  90               	/* epilogue start */
+  25:tst-04.c      **** }
+  91               		.loc 1 25 1 view .LVU15
+  92 002e 0895      		ret
+  93               		.cfi_endproc
+  94               	.LFE2:
+  96               	.Letext0:
+  97               		.file 2 "c:\\winavr-20100110\\avr\\include\\stdint.h"
