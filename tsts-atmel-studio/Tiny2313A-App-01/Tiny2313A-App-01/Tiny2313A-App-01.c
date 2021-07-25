@@ -1,7 +1,7 @@
 /*
  * Tiny2313A-App-01.c
  *
- * Created: 23/07/2021 19:51:55
+ * Created: 24/07/2021 20:25:55
  * Author : casanovg
  *
  * NOTE: Please make sure the ATtiny2313A fuses are configured as shown below:
@@ -14,7 +14,7 @@
  * at (DELAY * 2) milliseconds intervals. Then the chip will speed up to
  * around 16 MHz and PB1 will flash TIMES_FAST times. After that, the chip
  * will be restored to the original settings and will continue to flash.
- */
+ */ 
 
 #define F_CPU 1000000UL
 
@@ -84,5 +84,4 @@ void SlowDown(uint8_t initial_osccal) {
     CLKPR = (1 << CLKPCE);                    // Prescaler enable
     CLKPR = ((1 << CLKPS1) | (1 << CLKPS0));  // Clock division factor 8 (0011)
 }
-
 
